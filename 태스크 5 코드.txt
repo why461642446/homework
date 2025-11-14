@@ -1,0 +1,19 @@
+model = keras.Sequential([
+    keras.layers.Flatten(input_shape=(28, 28)),
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dense(10, activation='softmax'),
+])
+
+model.compile(
+    optimizer='adam',
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+train_images_norm = train_images / 255.0
+
+print("=== Epochs = 2 ===")
+history2 = model.fit(train_images_norm, train_labels, epochs=2, verbose=1)
+
+print("=== Epochs = 5 ===")
+history5 = model.fit(train_images_norm, train_labels, epochs=5, verbose=1)
